@@ -23,7 +23,7 @@ public:
   MLedHandler() {};
   ~MLedHandler() {};
 
-  static void doPattern();
+  static void doPattern(uint8_t patternEnum);
   
   static void patternOff();
   static void patternStrobe();
@@ -43,7 +43,7 @@ protected:
 };
 
 void MLedHandler::setup() {
-  Serial.print("[NeoPixel] Init stripes... ");
+  Serial.print(F("[NeoPixel] Init stripes... "));
   FastLED.addLeds<LED_TYPE, 2, COLOR_ORDER>(leds1, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<LED_TYPE, 3, COLOR_ORDER>(leds2, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.addLeds<LED_TYPE, 4, COLOR_ORDER>(leds3, NUM_LEDS).setCorrection(TypicalLEDStrip);
@@ -53,7 +53,7 @@ void MLedHandler::setup() {
 
   currBrightness = 50;
   FastLED.setBrightness(currBrightness);
-  Serial.println("done");
+  Serial.println(F("done"));
 }
 
 void MLedHandler::loop() {
@@ -90,12 +90,12 @@ void MLedHandler::patternOff() {
 void MLedHandler::patternStrobe() {
   // Serial.println("[Pattern] Strobe...");
   EVERY_N_MILLISECONDS(100) {
-    fadeToLightBy(leds1, NUM_LEDS, 20);
-    fadeToLightBy(leds2, NUM_LEDS, 20);
-    fadeToLightBy(leds3, NUM_LEDS, 20);
-    fadeToLightBy(leds4, NUM_LEDS, 20);
-    fadeToLightBy(leds5, NUM_LEDS, 20);
-    fadeToLightBy(leds6, NUM_LEDS, 20);
+    fadeLightBy(leds1, NUM_LEDS, 20);
+    fadeLightBy(leds2, NUM_LEDS, 20);
+    fadeLightBy(leds3, NUM_LEDS, 20);
+    fadeLightBy(leds4, NUM_LEDS, 20);
+    fadeLightBy(leds5, NUM_LEDS, 20);
+    fadeLightBy(leds6, NUM_LEDS, 20);
   }
   EVERY_N_MILLISECONDS(200) {
     fadeToBlackBy(leds1, NUM_LEDS, 10);
@@ -179,12 +179,12 @@ void MLedHandler::patternSinelon() {
 
 void MLedHandler::patternWhite() {  
   // Serial.println("[Pattern] White...");
-  fadeToLightBy(leds1, NUM_LEDS, 1);
-  fadeToLightBy(leds2, NUM_LEDS, 1);
-  fadeToLightBy(leds3, NUM_LEDS, 1);
-  fadeToLightBy(leds4, NUM_LEDS, 1);
-  fadeToLightBy(leds5, NUM_LEDS, 1);
-  fadeToLightBy(leds6, NUM_LEDS, 1);
+  fadeLightBy(leds1, NUM_LEDS, 1);
+  fadeLightBy(leds2, NUM_LEDS, 1);
+  fadeLightBy(leds3, NUM_LEDS, 1);
+  fadeLightBy(leds4, NUM_LEDS, 1);
+  fadeLightBy(leds5, NUM_LEDS, 1);
+  fadeLightBy(leds6, NUM_LEDS, 1);
 }
 
 void MLedHandler::patternConfettiRainbowGlitterSinelon() {
@@ -195,6 +195,7 @@ void MLedHandler::patternConfettiRainbowGlitterSinelon() {
 	  case confetti: currMultiPattern = rainbowGlitter; break;
 	  case rainbowGlitter: currMultiPattern = sinelon; break;
 	  case sinelon: currMultiPattern = confetti; break;
+    }
   } // change patterns periodically
   
   doPattern(currMultiPattern);

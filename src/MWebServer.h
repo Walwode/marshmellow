@@ -40,7 +40,7 @@ protected:
 };
 
 void MWebServer::setup() {
-  Serial.println("[WiFi] Hotspot \"Walt's Marshmellow Hat\"");
+  Serial.println(F("[WiFi] Hotspot \"Walt's Marshmellow Hat\""));
   // IPAddress ip(192, 168, 1, 100);
   // IPAddress gateway(192, 168, 1, 254);
   // IPAddress subnet(255, 255, 255, 0);
@@ -49,14 +49,14 @@ void MWebServer::setup() {
   WiFi.mode(WIFI_AP);
   WiFi.softAP("Walt's Marshmellow Hat", "taxitaxi");
   delay(500);
-  Serial.print("[WiFi] IP Adresse ");
+  Serial.print(F("[WiFi] IP Adresse "));
   Serial.println(WiFi.softAPIP());
 
-  server.on("/", httpRequest);
+  server.on(F("/"), httpRequest);
   // server.on("/foo.html", foobar);
 
   server.begin();
-  Serial.println("[WiFi] Server startet");
+  Serial.println(F("[WiFi] Server startet"));
 }
 
 void MWebServer::loop() {
@@ -64,15 +64,15 @@ void MWebServer::loop() {
 }
 
 void MWebServer::httpRequest() {
-  Serial.print("[HTTP] HttpRequest...");
+  Serial.print(F("[HTTP] HttpRequest..."));
   Serial.println(server.args());
 
   prevPattern = currPattern;
   currPattern = server.arg("pattern").toInt();
 
-  Serial.println("[HTTP] HttpResponse...");
+  Serial.println(F("[HTTP] HttpResponse..."));
   cretateHttpResponse();
-  server.send(200, "text/html", htmlResponse);
+  server.send(200, F("text/html"), htmlResponse);
 }
 
 void MWebServer::cretateHttpResponse() {

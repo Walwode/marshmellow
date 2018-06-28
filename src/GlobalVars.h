@@ -18,17 +18,17 @@ uint8_t currBrightness;
 
 String enumToString(uint8_t currEnum) {
   switch (currEnum) {
-    case none: return "None"; break;
-    case strobe: return "Strobe"; break;
-    case confetti: return "Confetti"; break;
-    case sparkle: return "Sparkle"; break;
-    case meteorrain: return "Meteor Rain"; break;
-    case runninglights: return "Running Lights"; break;
-    case rainbowGlitter: return "Rainbow with Glitter"; break;
-    case sinelon: return "Sinelon"; break;
-    case white: return "White"; break;
-	case multi1: return "Confetti RainbowGlitter Sinelon"; break;
-    default: return "Unkown";
+    case none: return F("None"); break;
+    case strobe: return F("Strobe"); break;
+    case confetti: return F("Confetti"); break;
+    case sparkle: return F("Sparkle"); break;
+    case meteorrain: return F("Meteor Rain"); break;
+    case runninglights: return F("Running Lights"); break;
+    case rainbowGlitter: return F("Rainbow with Glitter"); break;
+    case sinelon: return F("Sinelon"); break;
+    case white: return F("White"); break;
+    case multi1: return F("Confetti RainbowGlitter Sinelon"); break;
+    default: return F("Unkown");
   }
-  return "SWITCH ERROR";
+  return F("SWITCH ERROR");
 }
