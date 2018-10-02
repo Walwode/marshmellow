@@ -7,6 +7,7 @@ FASTLED_USING_NAMESPACE
 #define COLOR_ORDER GRB
 #define NUM_LEDS    45
 #define FRAMES_PER_SECOND  120
+#define MILLI_AMPS 1000
 
 uint8_t gHue = 0; // rotating "base color" used by many of the patterns
 
@@ -53,6 +54,7 @@ void MLedHandler::setup() {
 
   currBrightness = 50;
   FastLED.setBrightness(currBrightness);
+  FastLED.setMaxPowerInVoltsAndMilliamps(5, MILLI_AMPS);
   Serial.println(F("done"));
 }
 

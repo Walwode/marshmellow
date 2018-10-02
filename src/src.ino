@@ -1,3 +1,10 @@
+// https://github.com/jasoncoon/esp8266-fastled-webserver
+
+
+
+
+#define FASTLED_ALLOW_INTERRUPTS 0 // must be first line! before include FastLED https://github.com/FastLED/FastLED/issues/306#issuecomment-222548386
+
 #include <Arduino.h>
 #include <Scheduler.h>
 
